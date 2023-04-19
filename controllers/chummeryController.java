@@ -82,6 +82,6 @@ public class chummeryController {
         chummery.setPhoneNumber(phoneNumber);
             chummeryRepository.save(chummery);
         });
-        return "redirect:/student";
+        return "redirect:/chummery";
     }
 }
