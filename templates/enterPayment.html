@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel ="stylesheet"type="text/css" th:href="style.css">
+</head>
+<body>
+<div class="container">
+    <ul class="list-unstyled text-center">
+<form action="addPayment" method="post">
+<label class ="mylable" for="fullName">Full Name:</label>
+<input type="text" name="fullName" id="fullName" placeholder="Full Name"><br>
+<label class ="mylable" for="dateOfTheLastPayment"> Last Payment:</label>
+<input type="date" name="dateOfTheLastPayment" id="dateOfTheLastPayment" placeholder="Date of the Last Payment"><br>
+<label class ="mylable" for="fixedDate">Fixed Date:</label>
+<input type="date" name="fixedDate" id="fixedDate" placeholder="Fixed Date"><br>
+<label class ="mylable" for="sum">Payment Amount:</label>
+<input type="text" name="sum" id="sum" placeholder="Payment Amount"><br>
+<input type="submit" class="btn btn-outline-dark" value="Add Payment">
+</form>
+    </ul>
+</div>
+<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</body>
+</html>
