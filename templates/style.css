@@ -1,0 +1,8 @@
+body{
+    /*background-color: darkgrey;*/
+  background-image: url('https://damion.club/uploads/posts/2022-01/1641965014_73-damion-club-p-cherno-belie-foni-s-gorodami-76.jpg'); background-size:cover; height:100vh; display: flex; justify-content: center; align-items: center
+
+}
+.mylable{
+    width: 200px;
+}
