@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @org.springframework.stereotype.Controller
 @AllArgsConstructor
-public class chummeryController { //Github commentary 2.0
+public class chummeryController { //Github comment from idee
     private ChummeryRepository chummeryRepository;
     @GetMapping("/administration")
     public String administration() {
