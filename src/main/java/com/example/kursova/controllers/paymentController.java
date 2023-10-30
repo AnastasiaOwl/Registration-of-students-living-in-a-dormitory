@@ -1,12 +1,15 @@
 package com.example.kursova.controllers;
 
 import com.example.kursova.dataAO.PaymentRepository;
+import com.example.kursova.dataAO.StudentRepository;
 import com.example.kursova.entities.Payment;
+import com.example.kursova.entities.Student;
 import lombok.AllArgsConstructor;;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,10 +19,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class paymentController {
     private PaymentRepository paymentRepository;
-    @GetMapping("/accountant")
-    public String accountant() {
-        return "accountant";
-    }
+    private final StudentRepository studentRepository;
+
     @GetMapping("/enterPayment")
     public String enterPayment() {
         return "enterPayment";
@@ -33,24 +34,45 @@ public class paymentController {
     @PostMapping("/addPayment")
     public String addPayment(@RequestParam String fullName, @RequestParam LocalDate dateOfTheLastPayment, @RequestParam LocalDate fixedDate,@RequestParam double sum){
         Payment payment= new Payment();
-        payment.setFullName(fullName);
-        payment.setLastPaymentDate(dateOfTheLastPayment);
-        payment.setFixDate(fixedDate);
-        payment.setPaymentAmount(sum);
+//        payment.setFullName(fullName);
+//        payment.setLastPaymentDate(dateOfTheLastPayment);
+//        payment.setFixDate(fixedDate);
+//        payment.setPaymentAmount(sum);
         paymentRepository.save(payment);
         return "redirect:/enterPayment";
     }
-    @GetMapping("/payment_student")
-    public String showStudentByPayment(@RequestParam int id, Model model){
-       Optional<Payment> optionalPayment= paymentRepository.findById(id);
-       if(optionalPayment.isPresent()){
-           model.addAttribute("payment",optionalPayment.get());
-           return"student_payment";
-       }
-       else{
-         return "redirect:/payment";
-       }
+//    @GetMapping("/payment_student")
+//    public String showStudentByPayment(@RequestParam int id, Model model){
+//       Optional<Payment> optionalPayment= paymentRepository.findById(id);
+//       if(optionalPayment.isPresent()){
+//           model.addAttribute("payment",optionalPayment.get());
+//           return"student_payment";
+//       }
+//       else{
+//         return "redirect:/payment";
+//       }
+//    }
+@GetMapping("/payment_student")
+@ResponseBody
+public String showStudentNameByPayment(@RequestParam int id) {
+    Optional<Payment> optionalPayment = paymentRepository.findById(id);
+    if (optionalPayment.isPresent()) {
+        Payment payment = optionalPayment.get();
+        int studentId = payment.getId(); // Adjust this based on your Payment entity
+
+        // Retrieve the student by ID
+        Optional<Student> optionalStudent = studentRepository.findById(studentId);
+
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            String studentName = student.getNameResident(); // Assuming "name" is the field for the student's name
+
+            return studentName;
+        }
     }
+    return "Student not found"; // You can customize the message as needed
+}
+
     @GetMapping("/delete_payment")
     public String deletePayment(@RequestParam int id){
         paymentRepository.deleteById(id);
@@ -70,10 +92,10 @@ public class paymentController {
     public String updatePayment(@RequestParam int id,@RequestParam String fullName, @RequestParam LocalDate lastPaymentDate,@RequestParam LocalDate fixDate, @RequestParam Double paymentAmount){
         Optional<Payment> optionalPayment= paymentRepository.findById(id);
         optionalPayment.ifPresent(payment -> {
-            payment.setFullName(fullName);
-            payment.setLastPaymentDate(lastPaymentDate);
-            payment.setFixDate(fixDate);
-            payment.setPaymentAmount(paymentAmount);
+//            payment.setFullName(fullName);
+//            payment.setLastPaymentDate(lastPaymentDate);
+//            payment.setFixDate(fixDate);
+//            payment.setPaymentAmount(paymentAmount);
             paymentRepository.save(payment);
         });
         return "redirect:/payment";

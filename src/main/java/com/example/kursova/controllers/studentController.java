@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,21 +33,21 @@ public class studentController {
         return "/student";
     }
     @PostMapping("/addStudent")
-    public String addStudent(@RequestParam String fullName, @RequestParam Integer numberChummery, @RequestParam String chummeryAddress, @RequestParam String faculty,
-                             @RequestParam String group,@RequestParam Integer year, @RequestParam Integer roomNumber, @RequestParam String termOfResidence, @RequestParam String preferentialCategory,@RequestParam String budgetContract ){
+    public String addStudent(@RequestParam String nameResident, @RequestParam String nameFaculty, @RequestParam String group, @RequestParam Integer year,
+                             @RequestParam String roomNumber, @RequestParam LocalDate dateSettlement, @RequestParam LocalDate dateEviction,  @RequestParam String preferentialCategory, @RequestParam String budgetContract, @RequestParam String residenceStatus ){
        Student student = new Student();
-        student.setFullName(fullName);
-        student.setNumberChummery( numberChummery);
-        student.setChummeryAddress(chummeryAddress);
-        student.setFaculty(faculty);
+        student.setNameResident(nameResident);
+        student.setNameFaculty(nameFaculty);
         student.setGroup(group);
         student.setYear(year);
         student.setRoomNumber(roomNumber);
-        student.setTermOfResidence(termOfResidence);
+        student.setDateSettlement(dateSettlement);
+        student.setDateEviction(dateEviction);
         student.setPreferentialCategory(preferentialCategory);
         student.setBudgetContract(budgetContract);
+        student.setResidenceStatus(residenceStatus);
         studentRepository.save(student);
-        return "redirect:/enterStudent";
+        return "redirect:/student";
     }
     @GetMapping("/delete_student")
     public String deleteStudent(@RequestParam int id){
@@ -63,20 +65,20 @@ public class studentController {
         return "edit_student";
     }
     @PostMapping("/update_student")
-    public String updateStudent(@RequestParam int id,@RequestParam String fullName,@RequestParam Integer numberChummery,@RequestParam String chummeryAddress,@RequestParam String faculty,@RequestParam String group,
-                                @RequestParam Integer year, @RequestParam Integer roomNumber,@RequestParam String termOfResidence,@RequestParam String preferentialCategory,@RequestParam String budgetContract){
+    public String updateStudent(@RequestParam int id,@RequestParam String nameResident,@RequestParam String nameFaculty,@RequestParam String group, @RequestParam Integer year, @RequestParam String roomNumber,
+                                @RequestParam LocalDate dateSettlement,@RequestParam LocalDate dateEviction,@RequestParam String preferentialCategory,@RequestParam String budgetContract,@RequestParam String residenceStatus){
        Optional<Student> optionalStudent= studentRepository.findById(id);
         optionalStudent.ifPresent(student -> {
-            student.setFullName(fullName);
-            student.setNumberChummery(numberChummery);
-            student.setChummeryAddress(chummeryAddress);
-            student.setFaculty(faculty);
+            student.setNameResident(nameResident);
+            student.setNameFaculty(nameFaculty);
             student.setGroup(group);
             student.setYear(year);
             student.setRoomNumber(roomNumber);
-            student.setTermOfResidence(termOfResidence);
+            student.setDateSettlement(dateSettlement);
+            student.setDateEviction(dateEviction);
             student.setPreferentialCategory(preferentialCategory);
             student.setBudgetContract(budgetContract);
+            student.setResidenceStatus(residenceStatus);
             studentRepository.save(student);
         });
         return "redirect:/student";

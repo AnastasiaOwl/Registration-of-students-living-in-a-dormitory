@@ -2,23 +2,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Chummery</title>
+    <title>Edit Hostel</title>
     <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
     <link th:rel ="stylesheet"type="text/css" th:href="style.css">
 </head>
 <body>
+<div class="container">
+    <ul class="list-unstyled text-center">
     <form action="update_chummery" method="post">
     <input type="hidden" name="id" th:value="${chummery.id}">
     <label for="taddress">Address</label><br/>
     <input type="text" th:value="${chummery.address}" id="taddress" name="address" class="form-control-sm"><br/>
-    <label for="tchummeryNumber">chummery number</label><br/>
-    <input type="text" th:value="${chummery.chummeryNumber}" id="tchummeryNumber" name="chummeryNumber" class="form-control-sm"><br/>
-    <label for="tquRooms">Quantity room</label><br/>
-    <input type="text" th:value="${chummery.quRooms}" id="tquRooms" name="quRooms" class="form-control-sm"><br/>
-    <label for="tboysRNumbers">boys room number</label><br/>
-    <input type="text" th:value="${chummery.boysRNumbers}" id="tboysRNumbers" name="boysRNumbers" class="form-control-sm"><br/>
-    <label for="tgirlsRNumbers">girls room number</label><br/>
-    <input type="text" th:value="${chummery.girlsRNumbers}" id="tgirlsRNumbers" name="girlsRNumbers" class="form-control-sm"><br/>
+    <label for="thostelNumber">hostel number</label><br/>
+    <input type="text" th:value="${chummery.hostelNumber}" id="thostelNumber" name="hostelNumber" class="form-control-sm"><br/>
+    <label for="totalNumberPlace">Total number place</label><br/>
+    <input type="text" th:value="${chummery.totalNumberPlace}" id="totalNumberPlace" name="totalNumberPlace" class="form-control-sm"><br/>
+    <label for="numberFreePBoys">boys room number</label><br/>
+    <input type="text" th:value="${chummery.numberFreePBoys}" id="numberFreePBoys" name="numberFreePBoys" class="form-control-sm"><br/>
+    <label for="numberFreePGirls">girls room number</label><br/>
+    <input type="text" th:value="${chummery.numberFreePGirls}" id="numberFreePGirls" name="numberFreePGirls" class="form-control-sm"><br/>
     <label for="tphoneNumber">phone number</label><br/>
     <input type="text" th:value="${chummery.phoneNumber}" id="tphoneNumber" name="phoneNumber" class="form-control-sm"><br/>
     <button type="submit" class="btn btn-outline-dark">Update <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-up" viewBox="0 0 16 16">
@@ -26,6 +28,8 @@
         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 1 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.707l1.5-1.5a.5.5 0 0 1 .708 0Z"/>
     </svg></button>
     </form>
+    </ul>
+</div>
     <script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
