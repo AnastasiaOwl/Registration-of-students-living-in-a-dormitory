@@ -7,33 +7,37 @@
   <link th:rel ="stylesheet"type="text/css" th:href="style.css">
 </head>
 <body>
+<div class="container">
+  <ul class="list-unstyled text-center">
 <form action="update_student" method="post">
   <input type="hidden" name="id" th:value="${student.id}">
-  <label for="tfullName">full Name</label><br/>
-  <input type="text" th:value="${student.fullName}" id="tfullName" name="fullName" class="form-control-sm"><br/>
-  <label for="tnumberChummery">Number chummery</label><br/>
-  <input type="text" th:value="${student.numberChummery}" id="tnumberChummery" name="numberChummery" class="form-control-sm"><br/>
-  <label for="tchummeryAddress">Chummery address:</label><br/>
-  <input type="text" th:value="${student.chummeryAddress}" id="tchummeryAddress" name="chummeryAddress" class="form-control-sm"><br/>
-  <label for="tfaculty">Faculty</label><br/>
-  <input type="text" th:value="${student.faculty}" id="tfaculty" name="faculty" class="form-control-sm"><br/>
+  <label for="nameResident">name Resident</label><br/>
+  <input type="text" th:value="${student.nameResident}" id="nameResident" name="nameResident" class="form-control-sm"><br/>
+  <label for="nameFaculty">Faculty</label><br/>
+  <input type="text" th:value="${student.nameFaculty}" id="nameFaculty" name="nameFaculty" class="form-control-sm"><br/>
   <label for="tgroup">Group</label><br/>
   <input type="text" th:value="${student.group}" id="tgroup" name="group"class="form-control-sm"><br/>
   <label for="tyear">Year</label><br/>
   <input type="text" th:value="${student.year}" id="tyear" name="year" class="form-control-sm"><br/>
   <label for="troomNumber">Room number</label><br/>
   <input type="text" th:value="${student.roomNumber}" id="troomNumber" name="roomNumber" class="form-control-sm"><br/>
-  <label for="ttermOfResidence">Term of residence</label><br/>
-  <input type="text" th:value="${student.termOfResidence}" id="ttermOfResidence" name="termOfResidence" class="form-control-sm"><br/>
+  <label for="tdateSettlement">date Settlement</label><br/>
+  <input type="Date" th:value="${student.dateSettlement}" id="tdateSettlement" name="dateSettlement" class="form-control-sm"><br/>
+  <label for="tdateEviction">date Eviction</label><br/>
+  <input type="Date" th:value="${student.dateEviction}" id="tdateEviction" name="dateEviction" class="form-control-sm"><br/>
   <label for="tpreferentialCategory">Preferential category</label><br/>
   <input type="text" th:value="${student.preferentialCategory}" id="tpreferentialCategory" name="preferentialCategory" class="form-control-sm"><br/>
   <label for="tbudgetContract">budget/contract</label><br/>
   <input type="text" th:value="${student.budgetContract}" id="tbudgetContract" name="budgetContract" class="form-control-sm"><br/>
+  <label for="residenceStatus">Residence status</label><br/>
+  <input type="text" th:value="${student.residenceStatus}" id="residenceStatus" name="residenceStatus" class="form-control-sm"><br/>
   <button type="submit" class="btn btn-outline-dark">Update <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-up" viewBox="0 0 16 16">
     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 0 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.708l1.5-1.5a.5.5 0 0 1 .708 0ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
     <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
   </svg></button>
 </form>
+  </ul>
+</div>
 <script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
