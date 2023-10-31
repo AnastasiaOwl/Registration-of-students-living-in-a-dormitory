@@ -16,9 +16,9 @@
         <th>Last Payment Amount</th>
         <th>Total payment amount</th>
         <th>Fixed payment amount</th>
-            <th>Name resident</th>
         <th>delete</th>
         <th>edit</th>
+        <th>Resident name</th>
     </tr>
     </thead>
     <tbody>
@@ -28,9 +28,6 @@
         <td th:text="${p.amountOfLastPayment}"></td>
         <td th:text="${p.totalAmount}"></td>
         <td th:text="${p.fixedAmount}"></td>
-        <td><a th:href="@{payment_student(id=${p.id})}" class="btn btn-outline-dark">student <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-        </svg></a></td>
         <td>
             <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirm" th:attr="data-bs-link=@{delete_payment(id=${p.id})},
             data-bs-text=${p.id}, data-bs-id=${p.id}">delete <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewBox="0 0 16 16">
@@ -42,9 +39,15 @@
             <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 0 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.708l1.5-1.5a.5.5 0 0 1 .708 0ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
             <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
         </svg></a></td>
+        <td th:text="${p.student.nameResident}"></td>
     </tr>
     </tbody>
 </table>
+</div>
+<div class="container">
+    <ul class="list-unstyled text-center">
+        <a th:href="@{/enterPayment}" class="btn btn-outline-dark" id="AddPayment">Add Payment</a>
+    </ul>
 </div>
 <div class="modal fade" id="confirm" data-bs-backdrop="static" data-bs-keyboard="false"
      tabindex="-1" aria-labelledby="staticWarningLabel" aria-hidden="true">

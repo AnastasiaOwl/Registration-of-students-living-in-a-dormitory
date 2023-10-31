@@ -10,15 +10,19 @@
 <div class="container">
     <ul class="list-unstyled text-center">
 <form action="addPayment" method="post">
-<label class ="mylable" for="fullName">Full Name:</label>
-<input type="text" name="fullName" id="fullName" placeholder="Full Name"><br>
-<label class ="mylable" for="dateOfTheLastPayment"> Last Payment:</label>
-<input type="date" name="dateOfTheLastPayment" id="dateOfTheLastPayment" placeholder="Date of the Last Payment"><br>
-<label class ="mylable" for="fixedDate">Fixed Date:</label>
-<input type="date" name="fixedDate" id="fixedDate" placeholder="Fixed Date"><br>
-<label class ="mylable" for="sum">Payment Amount:</label>
-<input type="text" name="sum" id="sum" placeholder="Payment Amount"><br>
-<input type="submit" class="btn btn-outline-dark" value="Add Payment">
+<label class ="mylable" for="lastPaymentDate"> Last Payment Date:</label>
+<input type="date" name="lastPaymentDate" id="lastPaymentDate" placeholder="Date of the Last Payment"><br>
+<label class ="mylable" for="fixPaymentDate">Fixed Date:</label>
+<input type="date" name="fixPaymentDate" id="fixPaymentDate" placeholder="Fixed Date"><br>
+<label class ="mylable" for="amountOfLastPayment">Last Payment Amount:</label>
+<input type="text" name="amountOfLastPayment" id="amountOfLastPayment" placeholder="Last Payment Amount"><br>
+<label class ="mylable" for="totalAmount">Total Amount:</label>
+<input type="text" name="totalAmount" id="totalAmount" placeholder="Total Amount"><br>
+<label class ="mylable" for="fixedAmount">Fixed Amount:</label>
+<input type="text" name="fixedAmount" id="fixedAmount" placeholder="Fixed Amount"><br>
+    <label class="mylable" for="student_id">Student ID:</label>
+    <input type="text" name="student_id" id="student_id" placeholder="Student ID"><br>
+    <input type="submit" class="btn btn-outline-dark" value="Add Payment"><br>
 </form>
     </ul>
 </div>
