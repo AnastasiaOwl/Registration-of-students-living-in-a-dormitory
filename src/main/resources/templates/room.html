@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>room</title>
+    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel ="stylesheet"type="text/css" th:href="style.css">
+</head>
+<body>
+<div class="table-container">
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Room number</th>
+            <th>Free/Busy</th>
+            <th>Room type</th>
+            <th>Cost accommodation/th>
+            <th>delete</th>
+            <th>edit</th>
+            <th>Hostel</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r:${room}">
+            <td th:text="${r.roomNumber}"></td>
+            <td th:text="${r.freeBusy}"></td>
+            <td th:text="${r.roomType}"></td>
+            <td th:text="${r.costAccommodation}"></td>
+                    <td>
+                        <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirm" th:attr="data-bs-link=@{delete_room(id=${r.id})},
+                        data-bs-text=${r.roomNumber}, data-bs-id=${r.id}">delete <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewBox="0 0 16 16">
+                            <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
+                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708Z"/>
+                        </svg></a>
+                    </td>
+            <td><a th:href="@{/edit_room(id=${r.id})}" class="btn btn-outline-dark">edit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-up" viewBox="0 0 16 16">
+                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 0 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.708l1.5-1.5a.5.5 0 0 1 .708 0ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
+            </svg></a></td>
+            <td><a th:href="@{chummery_room(id=${r.id})}" class="btn btn-outline-dark">hostel <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+            </svg></a>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <ul class="list-unstyled text-center">
+        <a th:href="@{/enterRoom}" class="btn btn-outline-dark" id="addRoom">Add Room</a>
+    </ul>
+</div>
+
+<div class="modal fade" id="confirm" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="staticWarningLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticWarningLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete student?<br/>
+                If you click delete, this action <i>cannot be undone</i>.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <a class="btn btn-danger delete-button">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var ConfirmModal = document.getElementById('confirm')
+    ConfirmModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var link = button.getAttribute('data-bs-link')
+        var tid = button.getAttribute('data-bs-id')
+        var text = button.getAttribute('data-bs-text')
+        var modalTitle = ConfirmModal.querySelector('.modal-title')
+        modalTitle.textContent = 'Deleting student: ' + text + ' (' + tid + ')'
+        var deleteButton = ConfirmModal.querySelector('.delete-button')
+        deleteButton.setAttribute("href", link)
+    })
+</script>
+<script th:src ="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
+<script th:src="@{/webjars/popperjs_core/2.11.7/dist/umd/popper.js}"></script>
+<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

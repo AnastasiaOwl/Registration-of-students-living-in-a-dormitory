@@ -2,28 +2,69 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>registration of students in the dormitory</title>
-    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
-    <link th:rel ="stylesheet"type="text/css" th:href="style.css">
+    <title>Registration of Students in the Dormitory</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="style.css">
 </head>
 <body>
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <ul class="list-unstyled text-center">
-        <li><a href="/chummery" class="btn btn-outline-dark">Receiving chummery information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg></a></li>
-        <li><a href="/student" class="btn btn-outline-dark">Receiving student information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg></a></li>
-        <li><a href="/payment" class="btn btn-outline-dark">Receiving payment information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg></a></li>
-    </ul>
+<div style="display: flex; justify-content: space-between;">
+    <!-- Part 1: Menu -->
+    <div style="flex: 1;">
+        <ul class="list-unstyled text-center">
+            <li><a href="/chummery" class="btn btn-outline-dark">Receiving chummery information</a></li>
+            <li><a href="/student" class="btn btn-outline-dark">Receiving student information</a></li>
+            <li><a href="/payment" class="btn btn-outline-dark">Receiving payment information</a></li>
+            <li><a href="/room" class="btn btn-outline-dark">Receiving room information</a></li>
+            <!-- Add more menu items as needed -->
+        </ul>
+    </div>
+
+    <!-- Part 2: Display Area -->
+    <div style="flex: 1;">
+        <!-- This is where the content for each link will be displayed -->
+        <div id="content">
+            <!-- Content from clicked links will be inserted here dynamically using JavaScript -->
+        </div>
+    </div>
 </div>
 
-<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+<script>
+    // JavaScript to load content dynamically when a menu link is clicked
+    const menuLinks = document.querySelectorAll(".list-unstyled a");
+    const contentDiv = document.getElementById("content");
+
+    menuLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            // Fetch and insert content from the clicked link's href attribute
+            fetch(link.getAttribute("href"))
+                .then(response => response.text())
+                .then(content => {
+                    contentDiv.innerHTML = content;
+                });
+        });
+    });
+</script>
 </body>
 </html>
+<!--<a href="/chummery" class="btn btn-outline-dark">Receiving chummery information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">-->
+<!--    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>-->
+<!--</svg></a></li>-->
+<!--<li class="list-item">-->
+<!--    <a href="/student" class="btn btn-outline-dark">Receiving student information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">-->
+<!--        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>-->
+<!--    </svg></a></li>-->
+<!--<li class="list-item">-->
+<!--    <a href="/payment" class="btn btn-outline-dark">Receiving payment information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">-->
+<!--        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>-->
+<!--    </svg></a></li>-->
+<!--<li class="list-item">-->
+<!--    <a href="/room" class="btn btn-outline-dark">Receiving room information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">-->
+<!--        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>-->
+<!--    </svg></a></li>-->

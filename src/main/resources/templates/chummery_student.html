@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>chummery_student</title>
-  <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
-  <link th:rel ="stylesheet"type="text/css" th:href="style.css">
-</head>
-<body>
-<table class="table table-striped">
-  <thead class="table-dark">
-  <tr>
-    <th>Full name</th>
-    <th>Number chummery</th>
-    <th>Chummery address</th>
-    <th>Faculty</th>
-    <th>Group</th>
-    <th>Year</th>
-    <th>Room number</th>
-    <th>Term of residence</th>
-    <th>Preferential category</th>
-    <th>Budget/contract</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="k:${chummery.students}">
-    <td th:text="${k.fullName}"></td>
-    <td th:text="${k.numberChummery}"></td>
-    <td th:text="${k.chummeryAddress}"></td>
-    <td th:text="${k.faculty}"></td>
-    <td th:text="${k.group}"></td>
-    <td th:text="${k.year}"></td>
-    <td th:text="${k.roomNumber}"></td>
-    <td th:text="${k.termOfResidence}"></td>
-    <td th:text="${k.preferentialCategory}"></td>
-    <td th:text="${k.budgetContract}"></td>
-  </tr>
-  </tbody>
-</table>
-<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="style.css">
+  </head>
+  <body>
+  <table class="table table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>name Resident</th>
+      <th>Faculty</th>
+      <th>Group</th>
+      <th>Year</th>
+      <th>Room number</th>
+      <th>Date Settelment</th>
+      <th>Date Eviction</th>
+      <th>Preferential category</th>
+      <th>Budget/contract</th>
+      <th>Residence Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+      <td th:text="${student.nameResident}"></td>
+      <td th:text="${student.nameFaculty}"></td>
+      <td th:text="${student.group}"></td>
+      <td th:text="${student.year}"></td>
+      <td th:text="${student.room.roomNumber}"></td>
+      <td th:text="${student.dateSettlement}"></td>
+      <td th:text="${student.dateEviction}"></td>
+      <td th:text="${student.preferentialCategory}"></td>
+      <td th:text="${student.budgetContract}"></td>
+      <td th:text="${student.residenceStatus}"></td>
+    </tr>
+    </tbody>
+  </table>
+  </body>
+  </html>
+
+  <script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
