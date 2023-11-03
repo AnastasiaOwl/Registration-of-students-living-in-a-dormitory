@@ -1,11 +1,33 @@
-body{
-    /*background-color: darkgrey;*/
-  background-image: url('https://damion.club/uploads/posts/2022-01/1641965014_73-damion-club-p-cherno-belie-foni-s-gorodami-76.jpg'); background-size:cover; height:100vh;
 
+body {
+    background-color: darkgrey;
+    /*background-size: cover;*/
+    /*height: 100vh;*/
 }
-.table-container {
-    display: flex; justify-content: flex-start; align-items: flex-start;
+/*.table-container {*/
+/*    display: flex; justify-content: center; align-items: center;*/
+/*}*/
+
+/* New CSS for the layout */
+.container {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 115%;
 }
-.mylable{
+
+.left-menu {
+    flex: 4;
+}
+.left-menu {
+    text-align: left;
+}
+
+#content {
+    flex: 17;
+    justify-content: flex-end;
+    /*padding: 5px; !* Add padding to create space inside the content area *!*/
+}
+
+.mylable {
     width: 200px;
 }
