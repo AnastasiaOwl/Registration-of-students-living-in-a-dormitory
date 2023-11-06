@@ -55,7 +55,7 @@ public class Student {
     @ManyToMany(mappedBy = "students")
     private Set<Event> events = new LinkedHashSet<>();
 
-    @ManyToMany
+    @ManyToMany//
     @JoinTable(name = "student_services",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
