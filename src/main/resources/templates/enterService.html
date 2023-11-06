@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>enterService</title>
+    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel ="stylesheet"type="text/css" th:href="style.css"></head>
+<body>
+<div class="container">
+    <ul class="list-unstyled text-center">
+        <form action="addService" method="post">
+            <label class ="mylable" for="nameService">name Service:</label>
+            <input type="text" name="nameService" id="nameService" placeholder="name Service"><br>
+            <label class ="mylable" for="costService">cost Service:</label>
+            <input type="text" name="costService" id="costService" placeholder="cost Service"><br>
+            <input type="submit" class="btn btn-outline-dark" value="Add Service" >
+        </form>
+    </ul>
+</div>
+<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

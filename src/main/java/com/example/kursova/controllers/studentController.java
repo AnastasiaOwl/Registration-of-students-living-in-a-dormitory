@@ -20,7 +20,7 @@ public class studentController {
     private StudentRepository studentRepository;
 
     @GetMapping("/enterStudent")
-    public String enterPayment() {
+    public String enterStudent() {
         return "enterStudent";
     }
 
