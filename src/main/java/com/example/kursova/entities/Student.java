@@ -52,13 +52,17 @@ public class Student {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @ManyToMany(mappedBy = "students")
-    private Set<Event> events = new LinkedHashSet<>();
-
     @ManyToMany//
     @JoinTable(name = "student_services",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
     private Set<Service> services = new LinkedHashSet<>();
+
+
+    @ManyToMany
+    @JoinTable(name = "student_events",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "events_id"))
+    private Set<Event> events = new LinkedHashSet<>();
 
 }

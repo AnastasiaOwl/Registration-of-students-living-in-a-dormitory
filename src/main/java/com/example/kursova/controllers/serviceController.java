@@ -90,39 +90,37 @@ public class serviceController {
         return "payment_service";
     }
 
-//    @PostMapping("/addStudentPayment")
-//    public String addStudentPayment(
-//            @RequestParam int serviceId,
-//            @RequestParam int studentId,
-//            @RequestParam double paymentAmount
-//    ) {
-//        // Retrieve the selected service and student based on their IDs
-//        Service service = serviceRepository.findById(serviceId).orElse(null);
-//        Student student = studentRepository.findById(studentId).orElse(null);
-//
-//        // Check if the service and student exist
-//        if (service != null && student != null) {
-//            // Check if the student is already associated with the service
-//            StudentService existingStudentService = studentServiceRepository.findByStudentAndService(student, service);
-//            if (existingStudentService != null) {
-//                // Handle the case where the student is already associated with the service.
-//                // You can return an error message or redirect to an error page.
-//                return "redirect:/error";
-//            } else {
-//                // Create a new StudentService entity to represent the relationship and payment amount
-//                StudentService studentService = new StudentService(student, service, paymentAmount);
-//
-//                // Save the StudentService entity to the database
-//                studentServiceRepository.save(studentService);
-//
-//                return "redirect:/service";
-//            }
-//        } else {
-//            // Handle the case where the service or student is not found.
-//            // You can return an error message or redirect to an error page.
-//            return "redirect:/error";
-//        }
-//    }
+    @PostMapping("/addStudentPayment")
+    public String addStudentPayment(
+            @RequestParam int serviceId,
+            @RequestParam int studentId,
+            @RequestParam double paymentAmount
+    ) {
+        // Retrieve the selected service and student based on their IDs
+        Service service = serviceRepository.findById(serviceId).orElse(null);
+        Student student = studentRepository.findById(studentId).orElse(null);
 
+        // Check if the service and student exist
+        if (service != null && student != null) {
+            // Check if the student is already associated with the service
+            StudentService existingStudentService = studentServiceRepository.findByStudentAndService(student, service);
+            if (existingStudentService != null) {
+                // Handle the case where the student is already associated with the service.
+                // You can return an error message or redirect to an error page.
+                return "redirect:/error";
+            } else {
+                // Create a new StudentService entity to represent the relationship and payment amount
+                StudentService studentService = new StudentService(student, service, paymentAmount);
 
+                // Save the StudentService entity to the database
+                studentServiceRepository.save(studentService);
+
+                return "redirect:/service";
+            }
+        } else {
+            // Handle the case where the service or student is not found.
+            // You can return an error message or redirect to an error page.
+            return "redirect:/error";
+        }
+    }
 }

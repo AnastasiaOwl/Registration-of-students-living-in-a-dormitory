@@ -1,9 +1,9 @@
 package com.example.kursova.controllers;
 
+import com.example.kursova.dataAO.EventStudentRepository;
 import com.example.kursova.dataAO.EventsAndActivityRepository;
-import com.example.kursova.entities.Event;
-import com.example.kursova.entities.Hostel;
-import com.example.kursova.entities.Room;
+import com.example.kursova.dataAO.StudentRepository;
+import com.example.kursova.entities.*;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class eventController {
     private EventsAndActivityRepository eventsAndActivityRepository;
+    private StudentRepository studentRepository;
+    private EventStudentRepository eventStudentRepository;
     @GetMapping("/enterEvent")
     public String enterEvents() {
         return "enterEvent";
@@ -76,6 +78,45 @@ public class eventController {
             return"event_student";
         }
         else{
+            return "redirect:/event";
+        }
+    }
+    @GetMapping("/addStudent_event")
+    public String enterStudentService(@RequestParam int id, Model model) {
+        Optional<Event> optionalEvent = eventsAndActivityRepository.findById(id);
+        if (optionalEvent.isEmpty()) {
+            return "redirect:/event";
+        }
+        model.addAttribute("event", optionalEvent.get());
+        return "addStudent_event";
+    }
+
+    @PostMapping("/addStudentEvent")
+    public String addStudentEvent(@RequestParam int eventId, @RequestParam int studentId) {
+        // Retrieve the selected service and student based on their IDs
+        Event event = eventsAndActivityRepository.findById(eventId).orElse(null);
+        Student student = studentRepository.findById(studentId).orElse(null);
+
+        // Check if the service and student exist
+        if (event != null && student != null) {
+            // Check if the student is already associated with the service
+            EventStudent existingStudentEvent = eventStudentRepository.findByStudentAndEvent(student, event);
+            if (existingStudentEvent!= null) {
+                // Handle the case where the student is already associated with the service.
+                // You can return an error message or redirect to an error page.
+                return "redirect:/error";
+            } else {
+                // Create a new StudentService entity to represent the relationship and payment amount
+                EventStudent eventStudent = new EventStudent(student,event);
+
+                // Save the StudentService entity to the database
+                eventStudentRepository.save(eventStudent);
+
+                return "redirect:/event";
+            }
+        } else {
+            // Handle the case where the service or student is not found.
+            // You can return an error message or redirect to an error page.
             return "redirect:/event";
         }
     }

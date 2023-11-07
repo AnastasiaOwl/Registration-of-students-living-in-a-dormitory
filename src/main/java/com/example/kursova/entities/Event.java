@@ -33,11 +33,7 @@ public class Event {
     @Column(name = "venue", length = 50)
     private String venue;
 
-
-    @ManyToMany
-    @JoinTable(name = "event_students",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "students_id"))
+    @ManyToMany(mappedBy = "events")
     private Set<Student> students = new LinkedHashSet<>();
 
 }
