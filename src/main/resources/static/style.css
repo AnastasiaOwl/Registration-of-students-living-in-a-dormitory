@@ -1,31 +1,43 @@
 
 body {
     background-color: darkgrey;
-    /*background-size: cover;*/
-    /*height: 100vh;*/
 }
-/*.table-container {*/
-/*    display: flex; justify-content: center; align-items: center;*/
-/*}*/
 
 /* New CSS for the layout */
 .container {
+    text-align: center;
     display: inline-flex;
     justify-content: space-between;
-    width: 115%;
+    width: 130%;
+}
+.mycontainer {
+    text-align: center;
+    width: 100%
 }
 
 .left-menu {
     flex: 4;
+    text-align: center;
+    background-color: #f1f1f1;
+    border-right: 1px solid black; /* Change border color to black */
+    padding-right: 10px;
+    min-height: 100vh;
 }
-.left-menu {
-    text-align: left;
+
+.left-menu ul li {
+    line-height: 2; /* Adjust the value as needed to increase or decrease the line spacing */
+}
+
+.left-menu ul li a {
+    color: black; /* Set the color of the links (icons) to black */
+    text-decoration: none; /* Remove the default underline style */
 }
 
 #content {
     flex: 17;
-    justify-content: flex-end;
-    /*padding: 5px; !* Add padding to create space inside the content area *!*/
+    justify-content: space-between;
+    margin-left: 60px;
+    text-align: right;
 }
 
 .mylable {

@@ -7,9 +7,10 @@
     <link th:rel ="stylesheet"type="text/css" th:href="style.css">
 </head>
 <body>
-<div class="container">
+<div class="mycontainer">
+    <div id="content">
     <ul class="list-unstyled text-center">
-<form action="addStudent" method="post">
+    <form action="addStudent" method="post">
     <label class ="mylable" for="nameResident">name Resident:</label>
     <input type="text" name="nameResident" id="nameResident" placeholder="name Resident"><br>
     <label class ="mylable" for="nameFaculty">Faculty:</label>
@@ -33,6 +34,7 @@
     <input type="submit" class="btn btn-outline-dark" value="Add Student" >
 </form>
     </ul>
+    </div>
 </div>
 <script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
 </body>
