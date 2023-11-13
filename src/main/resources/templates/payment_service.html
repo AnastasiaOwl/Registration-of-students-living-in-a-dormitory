@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>payment_service</title>
+    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel ="stylesheet"type="text/css" th:href="style.css">
+</head>
+<body>
+<div class="mycontainer">
+    <ul class="list-unstyled text-center">
+        <form action="addStudentPayment" method="post">
+            <input type="hidden" name="serviceId" th:value="${service.id}">
+            <label class ="mylable" for="studentId">id student:</label>
+            <input type="text" name="studentId" id="studentId" placeholder="id Student"><br>
+            <label class ="mylable" for="paymentAmount">payment event</label>
+            <input type="text" name="paymentAmount" id="paymentAmount" placeholder="paymentAmount"><br>
+            <input type="submit" class="btn btn-outline-dark" value="Add Student" >
+        </form>
+    </ul>
+</div>
+<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

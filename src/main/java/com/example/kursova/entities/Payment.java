@@ -11,10 +11,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "payment")
 public class Payment {
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "student_id")
-    private Student student;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -35,5 +31,7 @@ public class Payment {
     @Column(name = "fixed_amount")
     private Double fixedAmount;
 
-
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private Student student; // Reference to the associated student
 }

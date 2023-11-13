@@ -7,15 +7,15 @@
     <link th:rel ="stylesheet"type="text/css" th:href="style.css">
 </head>
 <body>
-<div class="container">
+<div class="mycontainer">
     <ul class="list-unstyled text-center">
     <form action="update_chummery" method="post">
     <input type="hidden" name="id" th:value="${chummery.id}">
-    <label for="taddress">Address</label><br/>
+    <label for="taddress">address</label><br/>
     <input type="text" th:value="${chummery.address}" id="taddress" name="address" class="form-control-sm"><br/>
     <label for="thostelNumber">hostel number</label><br/>
     <input type="text" th:value="${chummery.hostelNumber}" id="thostelNumber" name="hostelNumber" class="form-control-sm"><br/>
-    <label for="totalNumberPlace">Total number place</label><br/>
+    <label for="totalNumberPlace">total number place</label><br/>
     <input type="text" th:value="${chummery.totalNumberPlace}" id="totalNumberPlace" name="totalNumberPlace" class="form-control-sm"><br/>
     <label for="numberFreePBoys">boys room number</label><br/>
     <input type="text" th:value="${chummery.numberFreePBoys}" id="numberFreePBoys" name="numberFreePBoys" class="form-control-sm"><br/>

@@ -1,6 +1,7 @@
 package com.example.kursova.controllers;
 
 import com.example.kursova.dataAO.StudentRepository;
+import com.example.kursova.entities.Hostel;
 import com.example.kursova.entities.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
@@ -17,12 +18,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class studentController {
     private StudentRepository studentRepository;
-    @GetMapping("/employees")
-    public String accountant() {
-        return "employees";
-    }
+
     @GetMapping("/enterStudent")
-    public String enterPayment() {
+    public String enterStudent() {
         return "enterStudent";
     }
 
@@ -47,12 +45,6 @@ public class studentController {
         student.setBudgetContract(budgetContract);
         student.setResidenceStatus(residenceStatus);
         studentRepository.save(student);
-        return "redirect:/student";
-    }
-    @GetMapping("/delete_student")
-    public String deleteStudent(@RequestParam int id){
-        //TODO Confirmation for delete
-        studentRepository.deleteById(id);
         return "redirect:/student";
     }
     @GetMapping("/edit_student")
@@ -82,5 +74,16 @@ public class studentController {
             studentRepository.save(student);
         });
         return "redirect:/student";
+    }
+    @GetMapping("/room_student")
+    public String showRoomByStudent(@RequestParam int id, Model model){
+        Optional<Student> optionalStudent= studentRepository.findById(id);
+        if(optionalStudent.isPresent()){
+            model.addAttribute("student",optionalStudent.get());
+            return"student_room";
+        }
+        else{
+            return "redirect:/student";
+        }
     }
 }

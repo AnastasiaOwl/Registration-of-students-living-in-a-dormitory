@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>enterRoom</title>
+    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel ="stylesheet"type="text/css" th:href="style.css">
+</head>
+<body>
+<div class="mycontainer">
+    <ul class="list-unstyled text-center">
+        <form action="addRoom" method="post">
+            <label class ="mylable" for="roomNumber">room number:</label>
+            <input type="text" name="roomNumber" id="roomNumber" placeholder="room number"><br>
+            <label class ="mylable" for="freeBusy">free/busy:</label>
+            <input type="text" name="freeBusy" id="freeBusy" placeholder="free/busy"><br>
+            <label class ="mylable" for="roomType">room type:</label>
+            <input type="text" name="roomType" id="roomType" placeholder="room type"><br>
+            <label class ="mylable" for="costAccommodation">cost accommodation:</label>
+            <input type="text" name="costAccommodation" id="costAccommodation" placeholder="cost accommodation"><br>
+            <input type="submit" class="btn btn-outline-dark" value="add room" >
+        </form>
+    </ul>
+</div>
+<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

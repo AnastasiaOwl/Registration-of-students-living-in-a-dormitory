@@ -25,77 +25,58 @@ public class paymentController {
     public String enterPayment() {
         return "enterPayment";
     }
+
     @GetMapping("/payment")
     public String getAllPayment(Model model) {
-        List<Payment> payment =paymentRepository.findAll();
-        model.addAttribute("payment",payment);
+        List<Payment> payment = paymentRepository.findAll();
+        model.addAttribute("payment", payment);
         return "payment";
     }
+
     @PostMapping("/addPayment")
-    public String addPayment(@RequestParam String fullName, @RequestParam LocalDate dateOfTheLastPayment, @RequestParam LocalDate fixedDate,@RequestParam double sum){
-        Payment payment= new Payment();
-//        payment.setFullName(fullName);
-//        payment.setLastPaymentDate(dateOfTheLastPayment);
-//        payment.setFixDate(fixedDate);
-//        payment.setPaymentAmount(sum);
-        paymentRepository.save(payment);
-        return "redirect:/enterPayment";
-    }
-//    @GetMapping("/payment_student")
-//    public String showStudentByPayment(@RequestParam int id, Model model){
-//       Optional<Payment> optionalPayment= paymentRepository.findById(id);
-//       if(optionalPayment.isPresent()){
-//           model.addAttribute("payment",optionalPayment.get());
-//           return"student_payment";
-//       }
-//       else{
-//         return "redirect:/payment";
-//       }
-//    }
-@GetMapping("/payment_student")
-@ResponseBody
-public String showStudentNameByPayment(@RequestParam int id) {
-    Optional<Payment> optionalPayment = paymentRepository.findById(id);
-    if (optionalPayment.isPresent()) {
-        Payment payment = optionalPayment.get();
-        int studentId = payment.getId(); // Adjust this based on your Payment entity
+    public String addPayment(@RequestParam LocalDate lastPaymentDate, @RequestParam LocalDate fixPaymentDate,
+                             @RequestParam double amountOfLastPayment, @RequestParam double totalAmount, @RequestParam double fixedAmount,@RequestParam("student_id") Integer studentId) {
+        Student student = studentRepository.findById(studentId).orElse(null);
 
-        // Retrieve the student by ID
-        Optional<Student> optionalStudent = studentRepository.findById(studentId);
-
-        if (optionalStudent.isPresent()) {
-            Student student = optionalStudent.get();
-            String studentName = student.getNameResident(); // Assuming "name" is the field for the student's name
-
-            return studentName;
+        if (student != null) {
+            Payment payment = new Payment();
+            payment.setLastPaymentDate(lastPaymentDate);
+            payment.setFixPaymentDate(fixPaymentDate);
+            payment.setAmountOfLastPayment(amountOfLastPayment);
+            payment.setTotalAmount(totalAmount);
+            payment.setFixedAmount(fixedAmount);
+            payment.setStudent(student);
+            paymentRepository.save(payment);
         }
+        return "redirect:/payment";
     }
-    return "Student not found"; // You can customize the message as needed
-}
 
     @GetMapping("/delete_payment")
-    public String deletePayment(@RequestParam int id){
+    public String deletePayment(@RequestParam int id) {
         paymentRepository.deleteById(id);
         return "redirect:/payment";
     }
 
     @GetMapping("/edit_payment")
-    public String editPayment(@RequestParam int id,Model model){
-        Optional<Payment> optionalPayment= paymentRepository.findById(id);
-        if (optionalPayment.isEmpty()){
+    public String editPayment(@RequestParam int id, Model model) {
+        Optional<Payment> optionalPayment = paymentRepository.findById(id);
+        if (optionalPayment.isEmpty()) {
             return "redirect:/payment";
         }
-        model.addAttribute("payment",optionalPayment.get());
+        model.addAttribute("payment", optionalPayment.get());
         return "edit_payment";
     }
+
     @PostMapping("/update_payment")
-    public String updatePayment(@RequestParam int id,@RequestParam String fullName, @RequestParam LocalDate lastPaymentDate,@RequestParam LocalDate fixDate, @RequestParam Double paymentAmount){
-        Optional<Payment> optionalPayment= paymentRepository.findById(id);
+    public String updatePayment(@RequestParam int id, @RequestParam LocalDate lastPaymentDate, @RequestParam LocalDate fixPaymentDate,
+                                @RequestParam double amountOfLastPayment, @RequestParam double totalAmount, @RequestParam double fixedAmount){
+        Optional<Payment> optionalPayment = paymentRepository.findById(id);
         optionalPayment.ifPresent(payment -> {
-//            payment.setFullName(fullName);
-//            payment.setLastPaymentDate(lastPaymentDate);
-//            payment.setFixDate(fixDate);
-//            payment.setPaymentAmount(paymentAmount);
+            payment.setLastPaymentDate(lastPaymentDate);
+            payment.setFixPaymentDate(fixPaymentDate);
+            payment.setAmountOfLastPayment(amountOfLastPayment);
+            payment.setTotalAmount(totalAmount);
+            payment.setFixedAmount(fixedAmount);
             paymentRepository.save(payment);
         });
         return "redirect:/payment";

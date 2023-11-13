@@ -1,12 +1,12 @@
 package com.example.kursova.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -51,5 +51,18 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
+
+    @ManyToMany//
+    @JoinTable(name = "student_services",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id"))
+    private Set<Service> services = new LinkedHashSet<>();
+
+
+    @ManyToMany
+    @JoinTable(name = "student_events",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "events_id"))
+    private Set<Event> events = new LinkedHashSet<>();
 
 }

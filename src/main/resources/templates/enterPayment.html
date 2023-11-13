@@ -7,18 +7,22 @@
     <link th:rel ="stylesheet"type="text/css" th:href="style.css">
 </head>
 <body>
-<div class="container">
+<div class="mycontainer">
     <ul class="list-unstyled text-center">
 <form action="addPayment" method="post">
-<label class ="mylable" for="fullName">Full Name:</label>
-<input type="text" name="fullName" id="fullName" placeholder="Full Name"><br>
-<label class ="mylable" for="dateOfTheLastPayment"> Last Payment:</label>
-<input type="date" name="dateOfTheLastPayment" id="dateOfTheLastPayment" placeholder="Date of the Last Payment"><br>
-<label class ="mylable" for="fixedDate">Fixed Date:</label>
-<input type="date" name="fixedDate" id="fixedDate" placeholder="Fixed Date"><br>
-<label class ="mylable" for="sum">Payment Amount:</label>
-<input type="text" name="sum" id="sum" placeholder="Payment Amount"><br>
-<input type="submit" class="btn btn-outline-dark" value="Add Payment">
+<label class ="mylable" for="lastPaymentDate"> last payment date:</label>
+<input type="date" name="lastPaymentDate" id="lastPaymentDate" placeholder="date of the last payment"><br>
+<label class ="mylable" for="fixPaymentDate">fixed date:</label>
+<input type="date" name="fixPaymentDate" id="fixPaymentDate" placeholder="fixed date"><br>
+<label class ="mylable" for="amountOfLastPayment">last payment amount:</label>
+<input type="text" name="amountOfLastPayment" id="amountOfLastPayment" placeholder="last payment amount"><br>
+<label class ="mylable" for="totalAmount">total amount:</label>
+<input type="text" name="totalAmount" id="totalAmount" placeholder="total amount"><br>
+<label class ="mylable" for="fixedAmount">fixed amount:</label>
+<input type="text" name="fixedAmount" id="fixedAmount" placeholder="fixed amount"><br>
+    <label class="mylable" for="student_id">student id:</label>
+    <input type="text" name="student_id" id="student_id" placeholder="student id"><br>
+    <input type="submit" class="btn btn-outline-dark" value="add payment"><br>
 </form>
     </ul>
 </div>
