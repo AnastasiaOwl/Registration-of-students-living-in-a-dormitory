@@ -1,43 +1,69 @@
-
 body {
-    background-color: darkgrey;
+    background-image: url('image/ajy.jpg');
+    background-size:cover;
+    margin: 0;
+    width: 100%;
 }
-
-/* New CSS for the layout */
+.btn {
+    font-family: "Gabriola", sans-serif;
+    font-size: 24px;
+}
+.form-control-sm{
+    font-family: "Gabriola", sans-serif;
+    font-size: 24px;
+}
 .container {
-    text-align: center;
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
-    width: 130%;
-}
-.mycontainer {
-    text-align: center;
-    width: 100%
+    min-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    font-family: "Gabriola", sans-serif; /* Change the font family */
+    font-size: 24px; /* Change the font size */
+    color: black;
 }
 
 .left-menu {
-    flex: 4;
     text-align: center;
-    background-color: #f1f1f1;
-    border-right: 1px solid black; /* Change border color to black */
-    padding-right: 10px;
+    background-color: steelblue;
+    border-right: 1px solid steelblue;
     min-height: 100vh;
+    width: 20%;
+    padding-left: 0;
+    /* Additional text style properties you may want to consider */
+    font-family: "Gabriola", sans-serif; /* Change the font family */
+    font-size: 24px; /* Change the font size */
+    color: black;
 }
 
 .left-menu ul li {
-    line-height: 2; /* Adjust the value as needed to increase or decrease the line spacing */
+    line-height: 2;
 }
 
 .left-menu ul li a {
-    color: black; /* Set the color of the links (icons) to black */
-    text-decoration: none; /* Remove the default underline style */
+    color: black;
+    text-decoration: none;
+}
+.left-menu ul li a:hover,
+.left-menu ul li a.active {
+    background-color: steelblue; /* Change the background color to your preference */
+    color: white; /* Change the text color to your preference */
+    font-weight: bold; /* Optionally, make the text bold */
 }
 
-#content {
-    flex: 17;
-    justify-content: space-between;
-    margin-left: 60px;
-    text-align: right;
+
+.mycontainer {
+    flex-grow: 1;
+    font-family: "Gabriola", sans-serif; /* Change the font family */
+    font-size: 24px; /* Change the font size */
+    color: black;
+}
+
+.align-content-end {
+    width: 100%;
+    table-layout: auto;
+    margin-right: 0;
+    padding-left: 10px;
 }
 
 .mylable {

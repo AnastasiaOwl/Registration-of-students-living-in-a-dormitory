@@ -11,15 +11,15 @@
     <ul class="list-unstyled text-center">
 <form action="update_payment" method="post">
     <input type="hidden" name="id" th:value="${payment.id}">
-    <label for="lastPaymentDate">Last payment date</label><br/>
+    <label for="lastPaymentDate">last payment date</label><br/>
     <input type="Date" th:value="${payment.lastPaymentDate}" id="lastPaymentDate" name="lastPaymentDate" class="form-control-sm"><br/>
-    <label for="fixPaymentDate">fix Date</label><br/>
+    <label for="fixPaymentDate">fix date</label><br/>
     <input type="Date" th:value="${payment.fixPaymentDate}" id="fixPaymentDate" name="fixPaymentDate" class="form-control-sm"><br/>
-    <label for="amountOfLastPayment">Last Payment amount</label><br/>
+    <label for="amountOfLastPayment">last payment amount</label><br/>
     <input type="text" th:value="${payment.amountOfLastPayment}" id="amountOfLastPayment" name="amountOfLastPayment" class="form-control-sm"><br/>
-    <label for="totalAmount">Total Payment amount</label><br/>
+    <label for="totalAmount">total payment amount</label><br/>
     <input type="text" th:value="${payment.totalAmount}" id="totalAmount" name="totalAmount" class="form-control-sm"><br/>
-    <label for="fixedAmount">Fixed Payment amount</label><br/>
+    <label for="fixedAmount">fixed payment amount</label><br/>
     <input type="text" th:value="${payment.fixedAmount}" id="fixedAmount" name="fixedAmount" class="form-control-sm"><br/>
     <button type="submit" class="btn btn-outline-dark">Update <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-up" viewBox="0 0 16 16">
         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 0 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.708l1.5-1.5a.5.5 0 0 1 .708 0ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>

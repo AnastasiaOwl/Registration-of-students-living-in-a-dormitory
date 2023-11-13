@@ -11,13 +11,13 @@
     <ul class="list-unstyled text-center">
         <form action="update_event" method="post">
             <input type="hidden" name="id" th:value="${event.id}">
-            <label for="nameEvent">name Event</label><br/>
+            <label for="nameEvent">name event</label><br/>
             <input type="text" th:value="${event.nameEvent}" id="nameEvent" name="nameEvent" class="form-control-sm"><br/>
-            <label for="eventDate">event Date</label><br/>
+            <label for="eventDate">event date</label><br/>
             <input type="Date" th:value="${event.eventDate}" id="eventDate" name="eventDate" class="form-control-sm"><br/>
-            <label for="eventStartTime">event Start time</label><br/>
+            <label for="eventStartTime">event start time</label><br/>
             <input type="text" th:value="${event.eventStartTime}" id="eventStartTime" name="eventStartTime" class="form-control-sm"><br/>
-            <label for="estimatesEndTime">estimates End Time</label><br/>
+            <label for="estimatesEndTime">estimates end time</label><br/>
             <input type="text" th:value="${event.estimatesEndTime}" id="estimatesEndTime" name="estimatesEndTime" class="form-control-sm"><br/>
             <label for="venue">venue</label><br/>
             <input type="text" th:value="${event.venue}" id="venue" name="venue" class="form-control-sm"><br/>

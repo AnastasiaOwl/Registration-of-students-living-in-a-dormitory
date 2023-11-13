@@ -25,6 +25,4 @@ public class Service {
 
     @ManyToMany(mappedBy = "services")
     private Set<Student> students = new LinkedHashSet<>();
-
-
 }
