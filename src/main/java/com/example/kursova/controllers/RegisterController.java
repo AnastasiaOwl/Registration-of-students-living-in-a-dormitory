@@ -18,10 +18,10 @@ public class RegisterController {
     private UserService userService;
 
     // handler method to handle home page request
-//    @GetMapping("/index")
-//    public String home(){
-//        return "index";
-//    }
+    @GetMapping("/index")
+    public String home(){
+        return "index";
+    }
 
     // handler method to handle user registration form request
     @GetMapping("/register")
@@ -50,6 +50,9 @@ public class RegisterController {
         userService.saveUser(userDto);
         return "redirect:/register?success";
     }
-
+    @GetMapping("/main_page")
+    public String mainPage() {
+        return "main_page";
+    }
 }
 
