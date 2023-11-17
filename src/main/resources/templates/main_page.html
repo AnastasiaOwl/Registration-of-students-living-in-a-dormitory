@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Main page</title>
     <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
-    <link th:rel ="stylesheet"type="text/css" th:href="style.css"></head>
+    <link th:rel ="stylesheet"type="text/css" th:href="@{/style.css}"></head>
 <body>
 <div class="container">
     <!-- Part 1: Menu -->
@@ -59,22 +59,12 @@
 
             const href = link.getAttribute("href");
 
-            // Check if the link points to the EnterStudent page
-            if (href === '/enterStudent') {
-                // Load the content of enterStudent.html using AJAX
-                fetch('/enterStudent.html')
-                    .then(response => response.text())
-                    .then(content => {
-                        contentDiv.innerHTML = content;
-                    });
-            } else {
-                // For other links, load content dynamically
-                fetch(href)
-                    .then(response => response.text())
-                    .then(content => {
-                        contentDiv.innerHTML = content;
-                    });
-            }
+            // Load content dynamically
+            fetch(href)
+                .then(response => response.text())
+                .then(content => {
+                    contentDiv.innerHTML = content;
+                });
         });
     });
 </script>

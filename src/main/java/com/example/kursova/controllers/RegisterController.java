@@ -22,6 +22,10 @@ public class RegisterController {
     public String home(){
         return "index";
     }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
     // handler method to handle user registration form request
     @GetMapping("/register")
