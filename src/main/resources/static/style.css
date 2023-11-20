@@ -22,6 +22,9 @@ body {
     font-size: 24px; /* Change the font size */
     color: black;
 }
+.placeholder{
+    font-size: 24px;
+}
 
 .left-menu {
     text-align: center;

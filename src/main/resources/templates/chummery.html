@@ -70,14 +70,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete chummery?<br/>
+        <span id="chummery-details"></span>
+        Are you sure you want to delete this chummery?<br/>
         If you click delete, this action <i>cannot be undone</i>.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancel
         </button>
-        <a class="btn btn-danger delete-button">Delete</a>
+        <a href="#" class="btn btn-danger delete-button" data-bs-dismiss="modal">Delete</a>
       </div>
     </div>
   </div>
@@ -86,13 +87,14 @@
   var ConfirmModal = document.getElementById('confirm')
   ConfirmModal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget
-    var link = button.getAttribute('data-bs-link')
     var tid = button.getAttribute('data-bs-id')
     var text = button.getAttribute('data-bs-text')
     var modalTitle = ConfirmModal.querySelector('.modal-title')
     modalTitle.textContent = 'Deleting chummery: ' + text + ' (' + tid + ')'
     var deleteButton = ConfirmModal.querySelector('.delete-button')
-    deleteButton.setAttribute("href", link)
+    var chummeryDetails = ConfirmModal.querySelector('#chummery-details')
+    chummeryDetails.textContent = 'Chummery details: ' + text
+    deleteButton.setAttribute("href", button.getAttribute('data-bs-link'))
   })
 </script>
 <script th:src ="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
