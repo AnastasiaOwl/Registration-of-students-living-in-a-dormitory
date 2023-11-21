@@ -1,6 +1,8 @@
 package com.example.kursova.controllers;
 
+import com.example.kursova.dataAO.RoleRepository;
 import com.example.kursova.dataAO.UserService;
+import com.example.kursova.entities.Role;
 import com.example.kursova.entities.User;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
@@ -11,12 +13,14 @@ import com.example.kursova.dto.UserDto;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 
 @org.springframework.stereotype.Controller
 @AllArgsConstructor
 public class RegisterController {
+    private RoleRepository roleRepository;
     private UserService userService;
-
     // handler method to handle home page request
     @GetMapping("/index")
     public String home(){
@@ -30,6 +34,8 @@ public class RegisterController {
     // handler method to handle user registration form request
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
+        List<Role> allRoles = roleRepository.findAll();
+        model.addAttribute("allRoles", allRoles);
         // create model object to store form data
         UserDto user = new UserDto();
         model.addAttribute("user", user);

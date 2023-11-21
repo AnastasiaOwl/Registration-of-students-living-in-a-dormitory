@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -36,13 +37,21 @@ public class UserServiceImpl implements UserService {
         // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        Role role = roleRepository.findByName("ROLE_ADMIN");
-        if(role == null){
-            role = checkRoleExist();
+        List<Role> roles = userDto.getRoles().stream()
+                .map(roleId -> roleRepository.findById(roleId).orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        if (roles.isEmpty()) {
+            // If no roles are selected, you may want to handle this case
+            // For example, throw an exception, log a warning, or set a default role
+            throw new RuntimeException("At least one role must be selected");
         }
-        user.setRoles(Arrays.asList(role));
+
+        user.setRoles(roles);
         userRepository.save(user);
     }
+
 
     @Override
     public User findUserByEmail(String email) {

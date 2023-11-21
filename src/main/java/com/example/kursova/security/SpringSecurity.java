@@ -29,19 +29,15 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/main_page").hasRole("ADMIN")
-                                .requestMatchers("/index").permitAll()
-                                .requestMatchers("/login").permitAll()
-                                .requestMatchers("/student").hasRole("ADMIN")
-                                .requestMatchers("/payment").hasRole("ADMIN")
-                                .requestMatchers("/event").hasRole("ADMIN")
-                                .requestMatchers("/room").hasRole("ADMIN")
-                                .requestMatchers("/chummery").hasRole("ADMIN")
-                                .requestMatchers("/service").hasRole("ADMIN")
-                                .requestMatchers("/style.css").permitAll()
-                                .requestMatchers("/image/ajy.jpg").permitAll()
-                                .requestMatchers("/webjars/bootstrap/5.2.3/css/bootstrap.min.css").permitAll()
+                        authorize.requestMatchers("/register/**","/index", "/login","/style.css", "/image/ajy.jpg", "/webjars/bootstrap/5.2.3/css/bootstrap.min.css").permitAll()
+                                .requestMatchers("/main_page").hasAnyRole("ADMIN", "Accountant", "Employee")
+                                .requestMatchers("/student").hasAnyRole("ADMIN", "Accountant", "Employee")
+                                .requestMatchers("/payment").hasAnyRole("ADMIN", "Accountant", "Employee")
+                                .requestMatchers("/event").hasAnyRole("ADMIN", "Accountant", "Employee")
+                                .requestMatchers("/room").hasAnyRole("ADMIN", "Accountant", "Employee")
+                                .requestMatchers("/chummery").hasAnyRole("ADMIN", "Accountant", "Employee")
+                                .requestMatchers("/service").hasAnyRole("ADMIN", "Accountant", "Employee")
+
 
                 ).formLogin(
                         form -> form
