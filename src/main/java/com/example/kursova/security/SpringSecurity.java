@@ -29,15 +29,18 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**","/index", "/login","/style.css", "/image/ajy.jpg", "/webjars/bootstrap/5.2.3/css/bootstrap.min.css").permitAll()
-                                .requestMatchers("/main_page").hasAnyRole("ADMIN", "Accountant", "Employee")
-                                .requestMatchers("/student").hasAnyRole("ADMIN", "Accountant", "Employee")
-                                .requestMatchers("/payment").hasAnyRole("ADMIN", "Accountant", "Employee")
-                                .requestMatchers("/event").hasAnyRole("ADMIN", "Accountant", "Employee")
-                                .requestMatchers("/room").hasAnyRole("ADMIN", "Accountant", "Employee")
-                                .requestMatchers("/chummery").hasAnyRole("ADMIN", "Accountant", "Employee")
-                                .requestMatchers("/service").hasAnyRole("ADMIN", "Accountant", "Employee")
-
+                        authorize.requestMatchers("/register/**","/index", "/login","/style.css", "/image/ajy.jpg", "/webjars/bootstrap/5.2.3/css/bootstrap.min.css",
+                                        "/webjars/popperjs_core/2.11.7/dist/umd/popper.js", "/webjars/jquery/3.6.4/dist/jquery.js","/webjars/bootstrap/5.2.3/js/bootstrap.min.js").permitAll()
+                                .requestMatchers("/main_page","/index").hasAnyRole("ADMIN", "Employee", "Accountant")
+                                .requestMatchers("/main_page","/index","/student","/event","/room","/chummery").hasAnyRole("ADMIN", "Employee")
+                                .requestMatchers("/payment","/service").hasAnyRole("ADMIN", "Accountant")
+                                .requestMatchers("/enterStudent","/enterRoom","/enterEvent","/enterChummery","/edit_student",
+                                        "/edit_chummery","/edit_room","/edit_event","/addStudent_event","/update_student","/update_event","/update_room","/update_chummery",
+                                        "/addStudent","/addEvent","/addRoom","/addChummery","/addStudentEvent","/delete_event", "/delete_room","/delete_chummery").hasRole("Employee")
+                                .requestMatchers("/enterPayment","/enterService","/edit_payment","/edit_service","/payment_service","/update_payment","/update_service",
+                                        "/addService","/addPayment","/addStudentPayment","/delete_service","/delete_payment").hasRole("Accountant")
+                                .requestMatchers("/chummery_student","/student_chummery","/event_student","/student_event","/service_student","/student_service").hasRole("ADMIN")
+                                .requestMatchers("/room_chummery","/chummery_room", "/room_student","/student_room").hasAnyRole("ADMIN", "Employee")
 
                 ).formLogin(
                         form -> form
