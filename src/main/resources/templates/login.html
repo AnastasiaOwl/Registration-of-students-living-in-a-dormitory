@@ -43,13 +43,20 @@
 
                         <div class="form-group mb-3">
                             <label class="control-label"> Password</label>
-                            <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    class="form-control"
-                                    placeholder="Enter password"
-                            />
+                            <div class="input-group">
+                                <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        class="form-control"
+                                        placeholder="Enter password"
+                                />
+                                <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <input type="checkbox" onclick="showPassword()"> Show
+                                </span>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group mb-3">
                             <button type="submit" class="btn btn-primary" >Submit</button>
@@ -64,5 +71,15 @@
     </div>
 </div>
 <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script>
+    function showPassword() {
+        var passwordInput = document.getElementById("password");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -28,6 +29,9 @@ public class SpringSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler()) // Set the custom access denied handler
+                .and()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**","/index", "/login","/style.css", "/image/ajy.jpg", "/webjars/bootstrap/5.2.3/css/bootstrap.min.css",
                                         "/webjars/popperjs_core/2.11.7/dist/umd/popper.js", "/webjars/jquery/3.6.4/dist/jquery.js","/webjars/bootstrap/5.2.3/js/bootstrap.min.js").permitAll()
@@ -61,5 +65,9 @@ public class SpringSecurity {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
+    }
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
     }
 }
