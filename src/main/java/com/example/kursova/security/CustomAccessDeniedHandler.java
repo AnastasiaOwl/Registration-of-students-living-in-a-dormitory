@@ -15,7 +15,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        response.getWriter().write("Access Denied. You do not have the required role.");
+        response.getWriter().write("Access Denied. You don`t have the required role.");
         response.getWriter().flush();
     }
 }
