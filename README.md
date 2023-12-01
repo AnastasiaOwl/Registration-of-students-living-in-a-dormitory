@@ -33,7 +33,23 @@ Record payments for additional services.
 Allow students to sign up for additional services.
 
 Branch: main.
-In this branch, the system includes all the mentioned features but lacks user registration and authentication.
+- In this branch, the system includes all the mentioned features but lacks user registration and authentication.
 
 Branch: bd.
-The bd branch incorporates user registration, authentication, and role-based access control, ensuring that each user has access only to the features relevant to their role.
+- The bd branch incorporates user registration, authentication, and role-based access control, ensuring that each user has access only to the features relevant to their role.
+
+## Database Schema
+- **student Table**: Information about students.
+- **hostel Table**: Information about dormitory.
+- **payment Table**: Information about payment.
+- **room Table**: Information about rooms.
+- **service Table**: Information about additional services.
+- **event Table**: Information about events and activities.
+- **student_events Table**: additional table to connect student and event tables.
+- **student_services Table**: additional table to connect student and service tables.
+- **users Table**: Information about users.
+- **roles Table**: Information about roles.
+- **users_roles Table**: additional table to connect users and roles tables.
+
+## Installation
+Clone the repository. To set up the database, you'll need a SQL database server like MySQL or PostgreSQL. You also need Mariadb. 
