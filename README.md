@@ -4,6 +4,7 @@ It provides functionality for managing student information,dormitory information
 The project is structured with two main branches: main and bd.
 Features
 Common Features (Available in both branches)
+
 Student Management:
 Add, edit  student records.
 View detailed information about each student.
