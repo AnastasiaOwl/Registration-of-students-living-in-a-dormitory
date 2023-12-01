@@ -31,8 +31,8 @@ Add, edit, and delete additional services records.
 Record payments for additional services.
 Allow students to sign up for additional services.
 
-Branch: main
+Branch: main.
 In this branch, the system includes all the mentioned features but lacks user registration and authentication.
 
-Branch: bd
+Branch: bd.
 The bd branch incorporates user registration, authentication, and role-based access control, ensuring that each user has access only to the features relevant to their role.
