@@ -50,7 +50,7 @@ body {
 .left-menu ul li a:hover,
 .left-menu ul li a.active {
     background-color: steelblue; /* Change the background color to your preference */
-    color: white; /* Change the text color to your preference */
+    color: white;  /* Change the text color to your preference */
     font-weight: bold; /* Optionally, make the text bold */
 }
 
