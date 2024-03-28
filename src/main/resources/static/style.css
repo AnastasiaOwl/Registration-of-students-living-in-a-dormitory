@@ -62,7 +62,7 @@ body {
     color: black;
 }
 
-.align-content-end {
+.align-content {
     width: 100%;
     table-layout: auto;
     margin-right: 0;
