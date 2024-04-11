@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>payment_service</title>
+    <title>student_event</title>
     <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
     <link th:rel ="stylesheet"type="text/css" th:href="style.css">
 </head>
@@ -13,6 +13,7 @@
             <input type="hidden" name="eventId" th:value="${event.id}">
             <label class ="mylable" for="studentId">id student:</label>
             <input type="text" name="studentId" id="studentId" placeholder="id Student"><br>
+            <p th:if="${param.error}" class="error-message" style="color: red;">Error: <span th:text="${param.error}"></span></p>
             <input type="submit" class="btn btn-outline-dark" value="Add Student" >
         </form>
     </ul>

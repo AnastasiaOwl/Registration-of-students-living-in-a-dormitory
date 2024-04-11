@@ -106,20 +106,15 @@ public class serviceController {
             StudentService existingStudentService = studentServiceRepository.findByStudentAndService(student, service);
             if (existingStudentService != null) {
                 // Handle the case where the student is already associated with the service.
-                // You can return an error message or redirect to an error page.
                 return "redirect:/error";
             } else {
                 // Create a new StudentService entity to represent the relationship and payment amount
                 StudentService studentService = new StudentService(student, service, paymentAmount);
-
-                // Save the StudentService entity to the database
                 studentServiceRepository.save(studentService);
 
                 return "redirect:/service";
             }
         } else {
-            // Handle the case where the service or student is not found.
-            // You can return an error message or redirect to an error page.
             return "redirect:/error";
         }
     }

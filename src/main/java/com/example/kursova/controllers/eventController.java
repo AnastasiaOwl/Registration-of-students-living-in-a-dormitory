@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -82,7 +83,7 @@ public class eventController {
         }
     }
     @GetMapping("/addStudent_event")
-    public String enterStudentService(@RequestParam int id, Model model) {
+    public String enterStudentEvent(@RequestParam int id, Model model) {
         Optional<Event> optionalEvent = eventsAndActivityRepository.findById(id);
         if (optionalEvent.isEmpty()) {
             return "redirect:/event";
@@ -92,31 +93,30 @@ public class eventController {
     }
 
     @PostMapping("/addStudentEvent")
-    public String addStudentEvent(@RequestParam int eventId, @RequestParam int studentId) {
+    public String addStudentEvent(@RequestParam int eventId, @RequestParam Integer studentId,  RedirectAttributes redirectAttributes) {
         // Retrieve the selected service and student based on their IDs
         Event event = eventsAndActivityRepository.findById(eventId).orElse(null);
+        if (studentId == null) {
+            // Return an error message or redirect to an error page
+            redirectAttributes.addAttribute("error", "Please enter a student ID");
+            return "redirect:/addStudent_event";
+        }
         Student student = studentRepository.findById(studentId).orElse(null);
 
-        // Check if the service and student exist
         if (event != null && student != null) {
-            // Check if the student is already associated with the service
             EventStudent existingStudentEvent = eventStudentRepository.findByStudentAndEvent(student, event);
             if (existingStudentEvent!= null) {
-                // Handle the case where the student is already associated with the service.
-                // You can return an error message or redirect to an error page.
                 return "redirect:/error";
             } else {
                 // Create a new StudentService entity to represent the relationship and payment amount
                 EventStudent eventStudent = new EventStudent(student,event);
 
-                // Save the StudentService entity to the database
                 eventStudentRepository.save(eventStudent);
 
                 return "redirect:/event";
             }
         } else {
-            // Handle the case where the service or student is not found.
-            // You can return an error message or redirect to an error page.
+
             return "redirect:/event";
         }
     }

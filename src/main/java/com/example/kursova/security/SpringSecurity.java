@@ -40,7 +40,7 @@ public class SpringSecurity {
                                 .requestMatchers("/payment","/service").hasAnyRole("ADMIN", "Accountant")
                                 .requestMatchers("/enterStudent","/enterRoom","/enterEvent","/enterChummery","/edit_student",
                                         "/edit_chummery","/edit_room","/edit_event","/addStudent_event","/update_student","/update_event","/update_room","/update_chummery",
-                                        "/addStudent","/addEvent","/addRoom","/addChummery","/addStudentEvent","/delete_event", "/delete_room","/delete_chummery").hasRole("Employee")
+                                        "/addStudent","/addEvent","/addRoom","/addChummery","/addStudentEvent","/delete_event", "/delete_room","/delete_chummery","/event_student").hasRole("Employee")
                                 .requestMatchers("/enterPayment","/enterService","/edit_payment","/edit_service","/payment_service","/update_payment","/update_service",
                                         "/addService","/addPayment","/addStudentPayment","/delete_service","/delete_payment").hasRole("Accountant")
                                 .requestMatchers("/chummery_student","/student_chummery","/event_student","/student_event","/service_student","/student_service").hasRole("ADMIN")
