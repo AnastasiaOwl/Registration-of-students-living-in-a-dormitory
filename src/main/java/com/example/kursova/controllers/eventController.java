@@ -96,8 +96,7 @@ public class eventController {
     public String addStudentEvent(@RequestParam int eventId, @RequestParam Integer studentId,  RedirectAttributes redirectAttributes) {
         // Retrieve the selected service and student based on their IDs
         Event event = eventsAndActivityRepository.findById(eventId).orElse(null);
-        if (studentId == null) {
-            // Return an error message or redirect to an error page
+        if (studentId == null){
             redirectAttributes.addAttribute("error", "Please enter a student ID");
             return "redirect:/addStudent_event";
         }
