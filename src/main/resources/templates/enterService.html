@@ -8,7 +8,7 @@
 <body>
 <div class="mycontainer">
     <ul class="list-unstyled text-center">
-        <form action="addService" method="post">
+        <form action="addService" method="post" id="serviceForm">
             <label class ="mylable" for="nameService">name service:</label>
             <input type="text" name="nameService" id="nameService" placeholder="name service"><br>
             <label class ="mylable" for="costService">cost service:</label>
@@ -17,6 +17,46 @@
         </form>
     </ul>
 </div>
-<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<div class="modal fade" id="serviceErrorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticWarningLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticWarningLabel">Error</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please fill in all the fields.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script>
+    // JavaScript to trigger the modal when the form is submitted
+    $(document).ready(function() {
+        $('#serviceForm').submit(function(service) {
+            // Prevent the default form submission
+            service.preventDefault();
+
+            // Check if any of the form fields are empty
+            var nameService = $('#nameService').val().trim();
+            var costService = $('#costService').val().trim();
+
+            if (nameService === '' || costService === '' ){
+                // If any of the fields are empty, show the modal
+                $('#serviceErrorModal').modal('show');
+            } else {
+                // If all fields are filled, submit the form
+                $(this).unbind('submit').submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>

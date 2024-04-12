@@ -3,26 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>enterEvent</title>
-    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
-    <link th:rel ="stylesheet"type="text/css" th:href="style.css"></head>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="style.css">
+</head>
 <body>
 <div class="mycontainer">
     <ul class="list-unstyled text-center">
-        <form action="addEvent" method="post">
-            <label class ="mylable" for="nameEvent">name event:</label>
-            <input type="text" name="nameEvent" id="nameEvent" placeholder="name event"><br>
-            <label class ="mylable" for="eventDate">event date:</label>
-            <input type="Date" name="eventDate" id="eventDate" placeholder="event date"><br>
-            <label class ="mylable" for="eventStartTime">event start time:</label>
-            <input type="text" name="eventStartTime" id="eventStartTime" placeholder="event start time"><br>
-            <label class ="mylable" for="estimatesEndTime">estimates end time:</label>
-            <input type="text" name="estimatesEndTime" id="estimatesEndTime" placeholder="estimates end time"><br>
-            <label class ="mylable" for="venue">venue:</label>
-            <input type="text" name="venue" id="venue" placeholder="venue"><br>
-            <input type="submit" class="btn btn-outline-dark" value="add event" >
+        <form action="addEvent" method="post" id="eventForm">
+            <label class="mylable" for="nameEvent">Name event:</label>
+            <input type="text" name="nameEvent" id="nameEvent" placeholder="Name event"><br>
+            <label class="mylable" for="eventDate">Event date:</label>
+            <input type="date" name="eventDate" id="eventDate" placeholder="Event date"><br>
+            <label class="mylable" for="eventStartTime">Event start time:</label>
+            <input type="text" name="eventStartTime" id="eventStartTime" placeholder="Event start time"><br>
+            <label class="mylable" for="estimatesEndTime">Estimates end time:</label>
+            <input type="text" name="estimatesEndTime" id="estimatesEndTime" placeholder="Estimates end time"><br>
+            <label class="mylable" for="venue">Venue:</label>
+            <input type="text" name="venue" id="venue" placeholder="Venue"><br>
+            <input type="submit" class="btn btn-outline-dark" value="Add Event">
         </form>
     </ul>
 </div>
-<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<div class="modal fade" id="eventErrorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticWarningLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticWarningLabel">Error</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please fill in all the fields.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script>
+    // JavaScript to trigger the modal when the form is submitted
+    $(document).ready(function() {
+        $('#eventForm').submit(function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Check if any of the form fields are empty
+            var nameEvent = $('#nameEvent').val().trim();
+            var eventDate = $('#eventDate').val().trim();
+            var eventStartTime = $('#eventStartTime').val().trim();
+            var estimatesEndTime = $('#estimatesEndTime').val().trim();
+            var venue = $('#venue').val().trim();
+
+            if (nameEvent === '' || eventDate === '' || eventStartTime === '' || estimatesEndTime === '' || venue === '') {
+                // If any of the fields are empty, show the modal
+                $('#eventErrorModal').modal('show');
+            } else {
+                // If all fields are filled, submit the form
+                $(this).unbind('submit').submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>

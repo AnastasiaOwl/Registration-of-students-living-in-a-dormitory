@@ -3,21 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>student_event</title>
-    <link th:rel="stylesheet"type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
-    <link th:rel ="stylesheet"type="text/css" th:href="style.css">
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="style.css">
 </head>
 <body>
 <div class="mycontainer">
     <ul class="list-unstyled text-center">
         <form action="addStudentEvent" method="post">
             <input type="hidden" name="eventId" th:value="${event.id}">
-            <label class ="mylable" for="studentId">id student:</label>
-            <input type="text" name="studentId" id="studentId" placeholder="id Student"><br>
-            <p th:if="${param.error}" class="error-message" style="color: red;">Error: <span th:text="${param.error}"></span></p>
-            <input type="submit" class="btn btn-outline-dark" value="Add Student" >
+            <label class="mylable" for="studentId">Student ID:</label>
+            <input type="text" name="studentId" id="studentId" placeholder="Student ID"><br>
+            <input type="submit" class="btn btn-outline-dark" value="Add Student">
         </form>
     </ul>
 </div>
-<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<div class="modal fade" id="studentIdErrorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticWarningLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticWarningLabel">Error</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Student ID cannot be empty.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script>
+    // JavaScript to trigger the modal when the form is submitted
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Check if the studentId is empty
+            var studentId = $('#studentId').val().trim();
+            if (studentId === '') {
+                // If the studentId is empty, show the modal
+                $('#studentIdErrorModal').modal('show');
+            } else {
+                // If the studentId is not empty, submit the form
+                $(this).unbind('submit').submit();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
+

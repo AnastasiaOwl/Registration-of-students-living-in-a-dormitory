@@ -9,7 +9,7 @@
 <body>
 <div class="mycontainer">
     <ul class="list-unstyled text-center">
-<form action="addChummery" method="post">
+<form action="addChummery" method="post" id="chummeryForm">
     <label class ="mylable" for="address">address:</label>
     <input type="text" name="address" id="address" placeholder="address"><br>
     <label class ="mylable" for="hostelNumber">hostel number:</label>
@@ -26,6 +26,51 @@
 </form>
     </ul>
 </div>
-<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<div class="modal fade" id="chummeryErrorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticWarningLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticWarningLabel">Error</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please fill in all the fields.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script>
+    // JavaScript to trigger the modal when the form is submitted
+    $(document).ready(function() {
+        $('#chummeryForm').submit(function(chummery) {
+            // Prevent the default form submission
+            chummery.preventDefault();
+
+            // Check if any of the form fields are empty
+            var address = $('#address').val().trim();
+            var hostelNumber = $('#hostelNumber').val().trim();
+            var totalNumberPlace = $('#totalNumberPlace').val().trim();
+            var numberFreePBoys = $('#numberFreePBoys').val().trim();
+            var numberFreePGirls = $('#numberFreePGirls').val().trim();
+            var phoneNumber = $('#phoneNumber').val().trim();
+
+            if (address === '' || hostelNumber === '' || totalNumberPlace === '' || numberFreePBoys === '' || numberFreePGirls === ''
+                || phoneNumber === ''){
+                // If any of the fields are empty, show the modal
+                $('#chummeryErrorModal').modal('show');
+            } else {
+                // If all fields are filled, submit the form
+                $(this).unbind('submit').submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>

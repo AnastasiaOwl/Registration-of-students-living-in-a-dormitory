@@ -93,13 +93,8 @@ public class eventController {
     }
 
     @PostMapping("/addStudentEvent")
-    public String addStudentEvent(@RequestParam int eventId, @RequestParam Integer studentId,  RedirectAttributes redirectAttributes) {
-        // Retrieve the selected service and student based on their IDs
+    public String addStudentEvent(@RequestParam int eventId, @RequestParam int studentId, Model model) {
         Event event = eventsAndActivityRepository.findById(eventId).orElse(null);
-        if (studentId == null){
-            redirectAttributes.addAttribute("error", "Please enter a student ID");
-            return "redirect:/addStudent_event";
-        }
         Student student = studentRepository.findById(studentId).orElse(null);
 
         if (event != null && student != null) {

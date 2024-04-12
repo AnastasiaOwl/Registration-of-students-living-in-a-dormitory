@@ -5,12 +5,12 @@ body {
     width: 100%;
 }
 .btn {
-    font-family: "Gabriola", sans-serif;
-    font-size: 24px;
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 18px;
 }
 .form-control-sm{
-    font-family: "Gabriola", sans-serif;
-    font-size: 24px;
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 18px;
 }
 .container {
     display: flex;
@@ -18,12 +18,12 @@ body {
     min-width: 100%;
     margin-left: 0;
     margin-right: 0;
-    font-family: "Gabriola", sans-serif; /* Change the font family */
-    font-size: 24px; /* Change the font size */
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 18px;
     color: black;
 }
 .placeholder{
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .left-menu {
@@ -33,14 +33,14 @@ body {
     min-height: 100vh;
     width: 20%;
     padding-left: 0;
-    /* Additional text style properties you may want to consider */
-    font-family: "Gabriola", sans-serif; /* Change the font family */
-    font-size: 24px; /* Change the font size */
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 18px;
     color: black;
 }
 
 .left-menu ul li {
     line-height: 2;
+    margin-bottom: 10px;
 }
 
 .left-menu ul li a {
@@ -49,16 +49,16 @@ body {
 }
 .left-menu ul li a:hover,
 .left-menu ul li a.active {
-    background-color: steelblue; /* Change the background color to your preference */
-    color: white;  /* Change the text color to your preference */
-    font-weight: bold; /* Optionally, make the text bold */
+    background-color: steelblue;
+    color: white;
+    font-weight: bold;
 }
 
 
 .mycontainer {
     flex-grow: 1;
-    font-family: "Gabriola", sans-serif; /* Change the font family */
-    font-size: 24px; /* Change the font size */
+   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 18px;
     color: black;
 }
 

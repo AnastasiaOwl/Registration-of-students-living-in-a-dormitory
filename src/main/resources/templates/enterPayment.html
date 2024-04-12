@@ -9,7 +9,7 @@
 <body>
 <div class="mycontainer">
     <ul class="list-unstyled text-center">
-<form action="addPayment" method="post">
+<form action="addPayment" method="post" id="paymentForm">
 <label class ="mylable" for="lastPaymentDate"> last payment date:</label>
 <input type="date" name="lastPaymentDate" id="lastPaymentDate" placeholder="date of the last payment"><br>
 <label class ="mylable" for="fixPaymentDate">fixed date:</label>
@@ -26,6 +26,51 @@
 </form>
     </ul>
 </div>
-<script th:src ="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<div class="modal fade" id="paymentErrorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticWarningLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticWarningLabel">Error</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please fill in all the fields.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script>
+    // JavaScript to trigger the modal when the form is submitted
+    $(document).ready(function() {
+        $('#paymentForm').submit(function(payment) {
+            // Prevent the default form submission
+            payment.preventDefault();
+
+            // Check if any of the form fields are empty
+            var lastPaymentDate = $('#lastPaymentDate').val().trim();
+            var fixPaymentDate = $('#fixPaymentDate').val().trim();
+            var amountOfLastPayment = $('#amountOfLastPayment').val().trim();
+            var totalAmount = $('#totalAmount').val().trim();
+            var fixedAmount = $('#fixedAmount').val().trim();
+            var student_id = $('#student_id').val().trim();
+
+            if (lastPaymentDate === '' || fixPaymentDate === '' || amountOfLastPayment === '' || totalAmount === '' || fixedAmount === ''
+                || student_id === ''){
+                // If any of the fields are empty, show the modal
+                $('#paymentErrorModal').modal('show');
+            } else {
+                // If all fields are filled, submit the form
+                $(this).unbind('submit').submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>
