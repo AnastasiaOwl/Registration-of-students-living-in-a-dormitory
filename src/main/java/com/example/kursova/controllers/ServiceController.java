@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @org.springframework.stereotype.Controller
 @AllArgsConstructor
-public class serviceController {
+public class ServiceController {
     private ServiceRepository serviceRepository;
     private StudentRepository studentRepository;
     private StudentServiceRepository studentServiceRepository;
@@ -96,19 +96,14 @@ public class serviceController {
             @RequestParam int studentId,
             @RequestParam double paymentAmount
     ) {
-        // Retrieve the selected service and student based on their IDs
         Service service = serviceRepository.findById(serviceId).orElse(null);
         Student student = studentRepository.findById(studentId).orElse(null);
 
-        // Check if the service and student exist
         if (service != null && student != null) {
-            // Check if the student is already associated with the service
             StudentService existingStudentService = studentServiceRepository.findByStudentAndService(student, service);
             if (existingStudentService != null) {
-                // Handle the case where the student is already associated with the service.
                 return "redirect:/error";
             } else {
-                // Create a new StudentService entity to represent the relationship and payment amount
                 StudentService studentService = new StudentService(student, service, paymentAmount);
                 studentServiceRepository.save(studentService);
 

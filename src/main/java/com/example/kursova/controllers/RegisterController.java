@@ -21,7 +21,7 @@ import java.util.List;
 public class RegisterController {
     private RoleRepository roleRepository;
     private UserService userService;
-    // handler method to handle home page request
+
     @GetMapping("/index")
     public String home(){
         return "index";
@@ -31,12 +31,10 @@ public class RegisterController {
         return "login";
     }
 
-    // handler method to handle user registration form request
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         List<Role> allRoles = roleRepository.findAll();
         model.addAttribute("allRoles", allRoles);
-        // create model object to store form data
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return "register";

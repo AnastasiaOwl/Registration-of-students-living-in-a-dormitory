@@ -1,22 +1,19 @@
 package com.example.kursova.controllers;
 
 import com.example.kursova.dataAO.RoomRepository;
-import com.example.kursova.dataAO.StudentRepository;
 import com.example.kursova.entities.Room;
-import com.example.kursova.entities.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Controller
 @AllArgsConstructor
-public class roomController {
+public class RoomController {
     private RoomRepository roomRepository;
     @GetMapping("/enterRoom")
     public String enterPayment() {

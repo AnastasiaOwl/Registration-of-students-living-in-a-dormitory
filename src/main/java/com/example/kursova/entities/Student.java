@@ -52,7 +52,7 @@ public class Student {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @ManyToMany//
+    @ManyToMany
     @JoinTable(name = "student_services",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
